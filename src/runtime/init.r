@@ -145,9 +145,15 @@ struct header *hdr;
 
    if ( IcodeSuffix[0] != '\0' && strcmp(fp.ext,IcodeSuffix) != 0
    && ( IcodeASuffix[0] == '\0' || strcmp(fp.ext,IcodeASuffix) != 0 ) ) {
-      char tname[100], ext[50];
-      if (n + strlen(IcodeSuffix) + 1 > 100)
-	 error(name, "icode file name too long");
+      #if MSWIN
+          char tname[255], ext[50];
+          if (n + strlen(IcodeSuffix) + 1 > 255)
+		error(name, "icode file name too long");
+      #else				/* MSWIN */
+          char tname[100], ext[50];
+          if (n + strlen(IcodeSuffix) + 1 > 100)
+		error(name, "icode file name too long");
+      #endif				/* MSWIN */
       strcpy(ext,fp.ext);
       strcat(ext,IcodeSuffix);
       makename(tname,NULL,name,ext);

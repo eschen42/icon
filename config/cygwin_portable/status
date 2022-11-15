@@ -25,10 +25,13 @@ Known bugs:
     https://github.com/eschen42/portableIcon
   for more info.
 
-  By default, this confiuration is not intended to support
+  By default, this configuration is not intended to support
   graphics; configuration with graphics has not been tested.
 
-	The "options" and "tpp" tests fail due to Unix dependencies.
+	The "options" test fails because profiling needs a Unix timer.
+
+	The "kwds" test fails because it does not expect &progname
+  to end in .exe.
 
 Comments:
 
